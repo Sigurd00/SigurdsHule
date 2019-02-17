@@ -1,0 +1,102 @@
+{% extends 'index.html' %}
+{% block content %}
+<div class="container jumbotron" role="main">
+
+    <!-- Main jumbotron for a primary marketing message or call to action -->
+    <div class="jumbotron-fluid">
+        <h1 class="display-4">Lixtal beregner!</h1>
+        <p class="lead">Indtast din tekst i feltet nedenfor. Tryk derefter på knappen for at udregne lixtallet af din tekst. </p>
+        <textarea name="Text1" cols="80" rows="5"></textarea>
+        <p><a href="#lixScore_field" id="calc_button" class="btn btn-outline-dark btn-lg" role="button">Udregn lixtal &raquo;</a></p>
+
+        <form class="container-fluid" method="post">
+            {% csrf_token %}
+            <div class="card text-center"  style="background-color: #e2e2e2">
+                <div class="alert alert-danger d-none" id="errorMessage" role="alert">
+                    Der skal være et eller flere punktummer i teksten, prøv igen!
+                </div>
+                <div class="card-body">
+                    <h4 class="card-title">
+                        Lixtal
+                    </h4>
+                    <label for="lixScore_field" class="card-subtitle" id="lixScore_label" style="font-style: italic">
+
+                    </label>
+                    <input type="number" readonly value="" id="lixScore_field" class="d-none">
+                </div>
+            </div>
+            <div class="card text-center" style="background-color: #e2e2e2">
+                <div class="card-body">
+                    <h4 class="card-title">
+                        Antal ord
+                    </h4>
+                    <label for="numWords_field" class="card-subtitled" id="numWords_label" style="font-style: italic">
+
+                    </label>
+                    <input type="number" readonly value="" id="numWords_field" class="d-none">
+                </div>
+            </div>
+            <div class="card text-center" style="background-color: #e2e2e2">
+                <div class="card-body">
+                    <h4 class="card-title">
+                        Punktummer
+                    </h4>
+                    <label for="numPeriods_field" class="card-subtitle" id="numPeriods_label" style="font-style: italic">
+
+                    </label>
+                    <input type="number" readonly value="" id="numPeriods_field" class="d-none">
+                </div>
+            </div>
+            <div class="card text-center" style="background-color: #e2e2e2">
+                <div class="card-body">
+                    <h4 class="card-title">
+                        Antal sætninger
+                    </h4>
+                    <label for="numSentences_field" class="card-subtitle" id="numSentences_label" style="font-style: italic">
+
+                    </label>
+                    <input type="number" readonly value="" id="numSentences_field" class="d-none">
+                </div>
+            </div>
+            <div class="card text-center" style="background-color: #e2e2e2">
+                <div class="card-body">
+                    <h4 class="card-title">
+                        Gennemsnitlig sætningslængde
+                    </h4>
+                    <label for="avgSentenceLength_field" class="card-subtitle" id="avgSentenceLength_label" style="font-style: italic">
+
+                    </label>
+                    <input type="number" readonly value="" id="avgSentenceLength_field" class="d-none">
+                </div>
+            </div>
+            <div class="card text-center" style="background-color: #e2e2e2">
+                <div class="card-body">
+                    <h4 class="card-title">
+                        Klassetrin
+                    </h4>
+                    <label for="class_field" class="card-subtitle" id="class_label" style="font-style: italic">
+
+                    </label>
+                    <input type="number" readonly value="" id="class_field" class="d-none">
+                </div>
+            </div>
+            <div class="card text-center" style="background-color: #e2e2e2">
+                <div class="card-body">
+                    <h4 class="card-title">
+                        Mest brugte ord
+                    </h4>
+                    <label for="mostUsedWord_field" class="card-subtitle" id="mostUsedWord_label" style="font-style: italic">
+
+                    </label>
+                    <input type="text" readonly value="" id="mostUsedWord_field" class="d-none">
+                </div>
+            </div>
+            <div class=" card text-center" style="background-color: #e2e2e2">
+                <p class="card-title"> <button type="submit" id="save_button" class="btn btn-outline-dark btn-lg">Gem resultat</button></p>
+            </div>
+        </form>
+    </div>
+</div>
+    {% load static %}
+    <script type="text/javascript" src="{% static 'lixCalc.js'  %}"></script>
+{% endblock %}

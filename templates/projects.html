@@ -1,0 +1,40 @@
+{% extends 'index.html' %}
+    {% block content %}
+        <div class="container-fluid">
+            <div class="container">
+                <table class="table table-dark table-sm table-hover">
+                {% if trin == 1 %}
+                    <caption>List over projekter jeg lavede i 1.g på Vejle Tekniske Gymnasium</caption>
+                {% endif %}
+                {% if trin == 2 %}
+                    <caption>List over projekter jeg lavede i 2.g på Vejle Tekniske Gymnasium</caption>
+                {% endif %}
+                {% if trin == 3 %}
+                    <caption>List over projekter jeg lavede i 3.g på Vejle Tekniske Gymnasium</caption>
+                {% endif %}
+                {% if trin == 4 %}
+                    <caption>List over projekter jeg er i gang med, eller har lavet, på Aalborg Universitet</caption>
+                {% endif %}
+                <thead>
+                    <tr>
+                        <th scope="col">Projekt</th>
+                        <th scope="col">Beskrivelse</th>
+                        <th scope="col">Oprettet</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for projekt in projekter %}
+                    {% if projekt.klassetrin == trin %}
+                        <tr>
+                            <th scope="row"><a href="{% url 'projekter-url' trin projekt.title%}" class="badge badge-pill badge-light">{{ projekt.title }}</a></th>
+                            <td>{{ projekt.beskrivelse }}</td>
+                            <td>{{ projekt.oprettet }}</td>
+                        </tr>
+                    {% endif %}
+                {% endfor %}
+                </tbody>
+                </table>
+            </div>
+        </div>
+
+    {% endblock %}
